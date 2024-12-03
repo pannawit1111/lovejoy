@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>สุขสันต์วันครบรอบ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* พื้นหลัง */
+    body {
+      font-family: 'Kanit', sans-serif;
+      background: linear-gradient(to right, #ff9a9e, #fecfef, #f6c5e4);
+      color: #fff;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 50px;
+      margin-top: 20px;
+      font-family: 'Lobster', cursive;
+      color: #ff4d88;
+      text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+      letter-spacing: 3px;
+      animation: titleAnimation 2s ease-out;
+    }
+
+    @keyframes titleAnimation {
+      0% {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* ซองจดหมาย */
+    .envelope {
+      width: 380px;
+      height: 230px;
+      background-color: #fff;
+      border-radius: 20px;
+      margin: 50px auto;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+      position: relative;
+      transform: rotate(-10deg);
+      transition: transform 0.5s ease-out;
+      overflow: hidden;
+    }
+
+    .envelope:hover {
+      transform: rotate(0deg);
+    }
+
+    .flap {
+      position: absolute;
+      top: -30px;
+      left: 0;
+      right: 0;
+      height: 30px;
+      background-color: #ff4d88;
+      border-radius: 10px 10px 0 0;
+      z-index: 1;
+    }
+
+    .envelope::before, .envelope::after {
+      content: '';
+      width: 50px;
+      height: 50px;
+      background-color: #ff5f5f;
+      border-radius: 50%;
+      position: absolute;
+      top: 10px;
+    }
+
+    .envelope::before {
+      left: 10px;
+    }
+
+    .envelope::after {
+      right: 10px;
+    }
+
+    /* ปีกซองจดหมาย */
+    .envelope .flap-left {
+      position: absolute;
+      top: -30px;
+      left: -40px;
+      width: 100px;
+      height: 100px;
+      background-color: #ff4d88;
+      clip-path: polygon(0 0, 100% 0, 0% 100%);
+      z-index: 0;
+    }
+
+    .envelope .flap-right {
+      position: absolute;
+      top: -30px;
+      right: -40px;
+      width: 100px;
+      height: 100px;
+      background-color: #ff4d88;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
+      z-index: 0;
+    }
+
+    /* ข้อความบนซอง */
+    .content {
+      position: relative;
+      top: 40%;
+      font-size: 20px;
+      color: #ff4d88;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: 'Kanit', sans-serif;
+      z-index: 2;
+    }
+
+    /* ปุ่มเปิดจดหมาย */
+    .open-btn {
+      background-color: #ff4d88;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 20px;
+      margin-top: 30px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      font-family: 'Kanit', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .open-btn::before {
+      content: '❤️';
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      font-size: 40px;
+      opacity: 0.3;
+      animation: heartAnimation 2s infinite;
+    }
+
+    @keyframes heartAnimation {
+      0% {
+        transform: scale(1);
+        opacity: 0.3;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0.3;
+      }
+    }
+
+    .open-btn:hover {
+      background-color: #e34a8f;
+      transform: scale(1.1);
+    }
+
+    /* แอนิเมชันการเปิดจดหมาย */
+    .message {
+      display: none;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 40px;
+      border-radius: 20px;
+      margin-top: 50px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+      text-align: left;
+      font-size: 18px;
+      color: #ff4d88;
+      max-width: 600px;
+      margin: 50px auto;
+      animation: fadeIn 1s ease-out;
+      font-family: 'Kanit', sans-serif;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ปรับความสวยงามของข้อความ */
+    .message p {
+      line-height: 1.8;
+      letter-spacing: 0.5px;
+      font-size: 20px;
+    }
+
+    .message p strong {
+      color: #ff4d88;
+    }
+
+    /* Media Query สำหรับมือถือ */
+    @media screen and (max-width: 600px) {
+      h1 {
+        font-size: 30px;
+      }
+
+      .envelope {
+        width: 90%;
+        height: 200px;
+      }
+
+      .content {
+        font-size: 16px;
+      }
+
+      .open-btn {
+        font-size: 16px;
+        padding: 12px 25px;
+      }
+
+      .message {
+        padding: 20px;
+      }
+
+      .message p {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>สุขสันต์วันครบรอบ</h1>
+
+  <div class="envelope">
+    <div class="flap"></div>
+    <div class="flap-left"></div>
+    <div class="flap-right"></div>
+    <div class="content">เปิดจดหมาย</div>
+    <button class="open-btn" onclick="openMessage()">เปิดจดหมาย</button>
+  </div>
+
+  <div class="message" id="message">
+    <p>สุขสันต์วันครบรอบนะเธองับครั้งนี้เค้าทักเองเราเป็นเเฟนกันมาตั้ง1ปีเเล้วน๊าเย้อยู่กันต่อไปอีกน๊าไปอีกตลอดๆไปเรื่อยๆจนเเก่เลยเค้าเเค่อยากจะบอกว่าเค้ารักเธอนะเค้ารักเธอมากๆๆๆๆๆนะคุณเเฟนเค้าขอโทษนะที่ทำอะไรไม่ดีกับเธอหลายๆอย่างเค้าจะปรับปรุงนะงับบบสุดท้ายนี้เค้าอยากจะบอกเธอว่ารักนะงับที่รักสุขสันต์วันครบรอบนะงับ</p>
+  </div>
+
+  <script>
+    function openMessage() {
+      document.getElementById('message').style.display = 'block';
+      document.querySelector('.envelope').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
